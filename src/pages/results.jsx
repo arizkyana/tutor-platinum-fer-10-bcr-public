@@ -1,7 +1,12 @@
+import Authorize from '@/components/Authorize';
 import Results from '@/containers/Results';
 
 function ResultsPage() {
-  return <Results />;
+  return (
+    <Authorize>
+      <Results />
+    </Authorize>
+  );
 }
 
 export default ResultsPage;

@@ -1,8 +1,9 @@
 import { Col, Card, Button } from 'react-bootstrap';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 function CarItem({ id, name, price, image }) {
-  const router = useRouter();
+  // const router = useRouter();
   return (
     <Col lg={4}>
       <Card>
@@ -17,15 +18,16 @@ function CarItem({ id, name, price, image }) {
           </div>
           <p>{price}</p>
 
-          <Button
-            type="button"
-            variant="success"
-            className="d-block"
-            style={{ width: '100%' }}
-            onClick={() => router.push(`/detail/${id}`)}
-          >
-            Pilih Mobil
-          </Button>
+          <Link href={`/detail/${id}`}>
+            <Button
+              type="button"
+              variant="success"
+              className="d-block"
+              style={{ width: '100%' }}
+            >
+              Pilih Mobil
+            </Button>
+          </Link>
         </Card.Body>
       </Card>
     </Col>

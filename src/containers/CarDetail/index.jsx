@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { Button, Card, Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row } from 'react-bootstrap';
+import FormOrder from './FormOrder';
 
 function CarDetail() {
   const router = useRouter();
@@ -45,22 +46,7 @@ function CarDetail() {
           </div>
         </Col>
         <Col lg={4}>
-          <Card style={{ minHeight: '15rem' }}>
-            <Card.Body>
-              <Card.Title>Pembayaran</Card.Title>
-              <Card.Text>Harga: {detailCar?.price}</Card.Text>
-            </Card.Body>
-            <Card.Footer>
-              <Button
-                type="button"
-                variant="success"
-                className="d-block"
-                style={{ width: '100%' }}
-              >
-                Bayar
-              </Button>
-            </Card.Footer>
-          </Card>
+          <FormOrder car={detailCar} />
         </Col>
       </Row>
     </Container>

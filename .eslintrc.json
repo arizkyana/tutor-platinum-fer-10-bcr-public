@@ -1,10 +1,16 @@
 {
   "env": {
     "browser": true,
+    "es6": true,
     "jest/globals": true
   },
-  "extends": ["next", "prettier", "plugin:jest/recommended"],
-  "plugins": ["react", "jest"],
+  "extends": ["plugin:jest/recommended", "next", "prettier"],
+  "plugins": ["jest"],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": ["./jsconfig.json"]
+  },
   "rules": {
     "no-unused-vars": 2,
     "no-console": 1
