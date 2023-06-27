@@ -1,4 +1,4 @@
-import Login from '@/containers/Login';
+import Login from '@/containers/Login/agung';
 
 function LoginPage() {
   return <Login />;

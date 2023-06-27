@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-// utils: auth
 const auth = {
   setUser(userData) {
     localStorage.setItem('user', JSON.stringify(userData));
@@ -12,58 +11,41 @@ const auth = {
     }
     return null;
   },
-  clearUser() {
+  clear() {
     localStorage.clear();
-    window.location.reload();
   },
-};
-
-const initialState = {
-  loading: false,
-  user: auth.getUser(),
-  formValues: {
-    email: null,
-    password: null,
-  },
-  errorMessage: null,
 };
 
 const loginSlice = createSlice({
   name: 'login',
-  initialState,
-  reducers: {
-    setErrorMessage(state, action) {
-      state.errorMessage = action.payload;
+  initialState: {
+    loading: false,
+    user: auth.getUser(),
+    formValues: {
+      email: null,
+      password: null,
     },
+  },
+  reducers: {
     setFormValues(state, action) {
       state.formValues = action.payload;
     },
+    loginProgress(state) {
+      state.loading = true;
+    },
     loginSuccess(state, action) {
-      state.loading = false;
       state.user = action.payload;
+      state.loading = false;
       auth.setUser(action.payload);
     },
     loginFailed(state) {
       state.loading = false;
       state.user = null;
     },
-    loginProgress(state) {
-      state.loading = true;
-    },
-    logout(state) {
-      state.user = null;
-      auth.clearUser();
-    },
   },
 });
 
-export const {
-  loginSuccess,
-  loginFailed,
-  loginProgress,
-  setFormValues,
-  setErrorMessage,
-  logout,
-} = loginSlice.actions;
+export const { setFormValues, loginProgress, loginSuccess, loginFailed } =
+  loginSlice.actions;
 
 export default loginSlice.reducer;
