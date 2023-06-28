@@ -2,15 +2,12 @@ import { useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import ReactDatePicker from 'react-datepicker';
 import axios from 'axios';
-
-import dayjs from 'dayjs';
 import { useSelector } from 'react-redux';
 
 function FormOrder(props) {
-  const login = useSelector((state) => state.login); // state -> user
-
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
+  const login = useSelector((state) => state.login);
 
   const onChange = (dates) => {
     const [start, end] = dates;
@@ -19,9 +16,11 @@ function FormOrder(props) {
   };
 
   const onSubmitOrder = async () => {
+    const dateStart = new Date(startDate).toISOString().split('T')[0];
+    const dateEnd = new Date(endDate).toISOString().split('T')[0];
     const payload = {
-      start_rent_at: dayjs(startDate).format('YYYY-MM-DD'),
-      finish_rent_at: dayjs(endDate).format('YYYY-MM-DD'),
+      start_rent_at: dateStart,
+      finish_rent_at: dateEnd,
       car_id: props.detailCar.id,
     };
     try {
@@ -46,37 +45,29 @@ function FormOrder(props) {
         <Card.Title>Pembayaran</Card.Title>
         <Card.Text>Harga: {props.detailCar?.price}</Card.Text>
 
-        {login.user && login.user.access_token ? (
-          <div>
-            <Card.Title>Tangal Sewa</Card.Title>
-            <ReactDatePicker
-              selected={startDate}
-              onChange={onChange}
-              startDate={startDate}
-              endDate={endDate}
-              selectsRange
-              className="form-control"
-            />
-          </div>
-        ) : (
-          <></>
-        )}
+        <div>
+          <Card.Title>Tangal Sewa</Card.Title>
+          <ReactDatePicker
+            selected={startDate}
+            onChange={onChange}
+            startDate={startDate}
+            endDate={endDate}
+            selectsRange
+            className="form-control"
+          />
+        </div>
       </Card.Body>
-      {login.user && login.user.access_token ? (
-        <Card.Footer>
-          <Button
-            type="button"
-            variant="success"
-            className="d-block"
-            style={{ width: '100%' }}
-            onClick={onSubmitOrder}
-          >
-            Order Rental
-          </Button>
-        </Card.Footer>
-      ) : (
-        <></>
-      )}
+      <Card.Footer>
+        <Button
+          type="button"
+          variant="success"
+          className="d-block"
+          style={{ width: '100%' }}
+          onClick={onSubmitOrder}
+        >
+          Order Rental
+        </Button>
+      </Card.Footer>
     </Card>
   );
 }

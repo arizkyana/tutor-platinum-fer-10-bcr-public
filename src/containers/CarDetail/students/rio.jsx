@@ -2,8 +2,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
-
-import FormOrder from './FormOrder';
+import FormOrder from './FormOrder/rio';
 
 function CarDetail() {
   const router = useRouter();

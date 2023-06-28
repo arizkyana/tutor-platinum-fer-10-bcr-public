@@ -9,14 +9,11 @@ import {
   loginSuccess,
   loginFailed,
 } from '@/redux/login/slice';
+import { useRouter } from 'next/router';
 
 function Login() {
-  //   const [formValues, setFormValues] = useState({
-  //     email: null,
-  //     password: null,
-  //   });
-
-  const { formValues } = useSelector((state) => state.login);
+  const router = useRouter();
+  const login = useSelector((state) => state.login);
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
@@ -27,11 +24,12 @@ function Login() {
       const response = await axios.post(
         'https://bootcamp-rent-cars.herokuapp.com/customer/auth/login',
         {
-          email: formValues.email,
-          password: formValues.password,
+          email: login.formValues.email,
+          password: login.formValues.password,
         }
       );
       dispatch(loginSuccess(response.data));
+      router.push('/results');
     } catch (error) {
       dispatch(loginFailed());
     }
@@ -57,8 +55,8 @@ function Login() {
                 onChange={(e) => {
                   dispatch(
                     setFormValues({
-                      ...formValues,
                       email: e.target.value,
+                      password: login.formValues.password,
                     })
                   );
                 }}
@@ -74,7 +72,7 @@ function Login() {
                 onChange={(e) => {
                   dispatch(
                     setFormValues({
-                      ...formValues,
+                      email: login.formValues.email,
                       password: e.target.value,
                     })
                   );
@@ -89,7 +87,7 @@ function Login() {
                 style={{ width: '100%' }}
                 variant="success"
               >
-                {formValues.loading ? 'Please wait...' : 'Go to my account'}
+                {login.loading ? 'Please wait...' : 'Go to my account'}
               </Button>
             </div>
           </Form>

@@ -4,19 +4,18 @@ import { useSelector } from 'react-redux';
 
 function Authorize(props) {
   const router = useRouter();
-  const { user } = useSelector((state) => state.login);
-
+  const login = useSelector((state) => state.login);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      if (!user) {
-        router.push('/login');
-        return;
-      }
-      setMounted(true);
+    if (!login.user) {
+      // user tidak ada
+      router.push('/login');
+      return;
     }
-  }, [user]);
+
+    setMounted(true);
+  }, [login.user]);
 
   return mounted ? props.children : <></>;
 }

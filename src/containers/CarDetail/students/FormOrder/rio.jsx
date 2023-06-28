@@ -46,37 +46,29 @@ function FormOrder(props) {
         <Card.Title>Pembayaran</Card.Title>
         <Card.Text>Harga: {props.detailCar?.price}</Card.Text>
 
-        {login.user && login.user.access_token ? (
-          <div>
-            <Card.Title>Tangal Sewa</Card.Title>
-            <ReactDatePicker
-              selected={startDate}
-              onChange={onChange}
-              startDate={startDate}
-              endDate={endDate}
-              selectsRange
-              className="form-control"
-            />
-          </div>
-        ) : (
-          <></>
-        )}
+        <div>
+          <Card.Title>Tangal Sewa</Card.Title>
+          <ReactDatePicker
+            selected={startDate}
+            onChange={onChange}
+            startDate={startDate}
+            endDate={endDate}
+            selectsRange
+            className="form-control"
+          />
+        </div>
       </Card.Body>
-      {login.user && login.user.access_token ? (
-        <Card.Footer>
-          <Button
-            type="button"
-            variant="success"
-            className="d-block"
-            style={{ width: '100%' }}
-            onClick={onSubmitOrder}
-          >
-            Order Rental
-          </Button>
-        </Card.Footer>
-      ) : (
-        <></>
-      )}
+      <Card.Footer>
+        <Button
+          type="button"
+          variant="success"
+          className="d-block"
+          style={{ width: '100%' }}
+          onClick={onSubmitOrder}
+        >
+          Order Rental
+        </Button>
+      </Card.Footer>
     </Card>
   );
 }

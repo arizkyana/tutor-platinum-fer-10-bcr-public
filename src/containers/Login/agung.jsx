@@ -26,6 +26,7 @@ function Login() {
         }
       );
       dispatch(loginSuccess(response.data));
+      window.location.reload();
     } catch (error) {
       dispatch(loginFailed());
     }
@@ -41,10 +42,6 @@ function Login() {
           <Card.Title className="mb-4">
             <h3>Login</h3>
           </Card.Title>
-
-          <div>
-            <pre>{JSON.stringify(login.user, undefined, 2)}</pre>
-          </div>
 
           <Form onSubmit={handleSubmit}>
             <div className="mb-3">

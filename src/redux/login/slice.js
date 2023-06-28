@@ -9,10 +9,11 @@ const auth = {
       const storageUser = localStorage.getItem('user');
       return JSON.parse(storageUser);
     }
-    return null;
+    return {};
   },
   clear() {
     localStorage.clear();
+    window.location.reload();
   },
 };
 
@@ -42,10 +43,19 @@ const loginSlice = createSlice({
       state.loading = false;
       state.user = null;
     },
+    logout(state) {
+      state.user = null;
+      auth.clear();
+    },
   },
 });
 
-export const { setFormValues, loginProgress, loginSuccess, loginFailed } =
-  loginSlice.actions;
+export const {
+  setFormValues,
+  loginProgress,
+  loginSuccess,
+  loginFailed,
+  logout,
+} = loginSlice.actions;
 
 export default loginSlice.reducer;

@@ -1,6 +1,5 @@
-import Authorize from '@/components/Authorize';
 import CarDetail from '@/containers/CarDetail';
-
+import Authorize from '@/components/Authorize';
 function CarDetailPage() {
   return (
     <Authorize>

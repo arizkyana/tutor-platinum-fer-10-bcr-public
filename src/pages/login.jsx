@@ -1,7 +1,12 @@
 import Login from '@/containers/Login';
+import NoAuthorize from '@/components/NoAuthorize';
 
 function LoginPage() {
-  return <Login />;
+  return (
+    <NoAuthorize>
+      <Login />
+    </NoAuthorize>
+  );
 }
 
 export default LoginPage;

@@ -1,9 +1,8 @@
 import { Col, Card, Button } from 'react-bootstrap';
-// import { useRouter } from 'next/router';
+
 import Link from 'next/link';
 
 function CarItem({ id, name, price, image }) {
-  // const router = useRouter();
   return (
     <Col lg={4}>
       <Card>
