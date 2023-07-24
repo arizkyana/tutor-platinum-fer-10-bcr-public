@@ -2,3 +2,6 @@
 .react-datepicker-wrapper {
   width: 100%;
 }
+.breadcrumb-item + .breadcrumb-item::before {
+  content: var(--bs-breadcrumb-divider, '>');
+}

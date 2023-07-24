@@ -4,7 +4,7 @@ function Payment() {
   return (
     <Container className="py-4">
       <div className="mb-4">
-        <Button type="button" variant="secondary" onClick={() => router.back()}>
+        <Button type="button" variant="secondary">
           Back
         </Button>
       </div>
