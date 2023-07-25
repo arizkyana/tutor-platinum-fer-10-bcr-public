@@ -26,8 +26,16 @@ const loginSlice = createSlice({
       email: null,
       password: null,
     },
+    error: {
+      all: null,
+      email: null,
+      password: null,
+    },
   },
   reducers: {
+    setError(state, action) {
+      state.error = action.payload;
+    },
     setFormValues(state, action) {
       state.formValues = action.payload;
     },
@@ -39,9 +47,10 @@ const loginSlice = createSlice({
       state.loading = false;
       auth.setUser(action.payload);
     },
-    loginFailed(state) {
+    loginFailed(state, action) {
       state.loading = false;
       state.user = null;
+      state.error.all = action.payload;
     },
     logout(state) {
       state.user = null;
@@ -56,6 +65,7 @@ export const {
   loginSuccess,
   loginFailed,
   logout,
+  setError,
 } = loginSlice.actions;
 
 export default loginSlice.reducer;

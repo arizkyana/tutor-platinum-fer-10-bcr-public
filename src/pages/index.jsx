@@ -21,7 +21,9 @@ function HomePage(props) {
         </Card>
         <h1 style={{ fontSize: '100pt' }}>Judul website</h1>
         <section>
-          <h2 style={{ fontSize: '100pt' }}>Judul website</h2>
+          <h2 data-testid="button" style={{ fontSize: '100pt' }}>
+            Judul website
+          </h2>
           <p style={{ fontSize: '20pt' }}>
             Isi website Lorem ipsum, dolor sit amet consectetur adipisicing
             elit. Dignissimos possimus commodi architecto, asperiores cum
